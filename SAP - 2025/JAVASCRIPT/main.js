@@ -1,16 +1,44 @@
-const btnGenerate = document.querySelector("#generate-pdf");
+let produtos =[
+    {"nome": "produto1",
+        "preco": 10,
+        "quantidade": 0
+    },
+    {"nome": "produto2",
+    "preco": 12,
+    "quantidade": 0
+    },
+    {"nome": "produto3",
+    "preco": 13,
+    "quantidade": 0
+    },
+    {"nome": "produto4",
+    "preco": 14,
+    "quantidade": 0
+    },
+    {"nome": "produto5",
+    "preco": 15,
+    "quantidade": 0
+    },
+]
 
-btnGenerate.addEventListener("click", () =>{
-    // conteudo do pdf
-    const content = document.querySelector("#content")
 
-    //configuração do arquivo
-    const options =  {
-        margin: [10, 10 , 10 , 10],
-        filename: "arquivo.pdf",
-        html2canvas: {scale: 2},
-        jsPDF : {unit:"mm", format: "a4", orientation:"portrait"}
-    }
 
-    html2pdf().set(options).from(content).save();
-}) 
+function adiciona(param)
+{   
+    
+    let produto = produtos.find(produto => produto.nome === param);
+    console.log(produto.quantidade)
+    let quant = produto.quantidade += 1
+    produto = {"nome":produto.nome, "preco": produto.preco, "quantidade": quant}
+    console.log(produto.quantidade)
+    console.log(produto.nome)
+}
+let valorFinal
+function calculaValor()
+{   
+    
+    produtos.forEach(produto => valorFinal += (parseInt(produto.preco) * parseInt(produto.quantidade)))
+    console.log(parseInt(valorFinal))
+}
+
+
